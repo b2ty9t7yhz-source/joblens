@@ -182,3 +182,30 @@ class JobPriorityScoreResponse(BaseModel):
     recommendation: str
     reasons: list[str]
     analysis: JobDescriptionAnalysisResponse
+
+
+class ResumeVersionInput(BaseModel):
+    name: str
+    focus_area: str
+    skills: list[str]
+    notes: Optional[str] = None
+
+
+class ResumeRecommendationRequest(BaseModel):
+    description: str
+    resume_versions: list[ResumeVersionInput]
+
+
+class ResumeScore(BaseModel):
+    name: str
+    focus_area: str
+    score: int
+    matched_skills: list[str]
+    missing_skills: list[str]
+    reasons: list[str]
+
+
+class ResumeRecommendationResponse(BaseModel):
+    recommended_resume: Optional[ResumeScore] = None
+    all_resume_scores: list[ResumeScore]
+    job_analysis: JobDescriptionAnalysisResponse
