@@ -213,3 +213,19 @@ Build Docker image:
 Run Docker container:
 
     make docker-run
+
+## Database Migrations
+
+This project includes Alembic migrations.
+
+Run migrations:
+
+    alembic upgrade head
+
+Check migration history:
+
+    alembic history
+
+Migration docs:
+
+    docs/database_migrations.md
