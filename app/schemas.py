@@ -85,3 +85,36 @@ class ImportFromDescriptionRequest(BaseModel):
 class ImportedApplicationResponse(BaseModel):
     application: ApplicationRead
     analysis: JobDescriptionAnalysisResponse
+
+
+class GreenhouseImportRequest(BaseModel):
+    board_token: str
+    company: str
+    keywords: list[str] = []
+    locations: list[str] = []
+    user_skills: list[str] = []
+    limit: int = 10
+    save_results: bool = False
+
+
+class GreenhouseJobPreview(BaseModel):
+    company: str
+    role: str
+    link: Optional[str] = None
+    location: Optional[str] = None
+    source: str
+    description: str
+    greenhouse_job_id: Optional[int] = None
+
+
+class GreenhouseImportItem(BaseModel):
+    job: GreenhouseJobPreview
+    analysis: JobDescriptionAnalysisResponse
+
+
+class GreenhouseImportResponse(BaseModel):
+    board_token: str
+    company: str
+    matched_jobs: int
+    saved_jobs: int
+    results: list[GreenhouseImportItem]
