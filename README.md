@@ -229,3 +229,22 @@ Check migration history:
 Migration docs:
 
     docs/database_migrations.md
+
+## Deployment
+
+This project is prepared for Render deployment.
+
+Recommended Render settings:
+
+    Build Command: pip install -r requirements.txt
+    Start Command: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+After deployment:
+
+    /ui      Web frontend
+    /docs    API documentation
+    /health  Health check
+
+See:
+
+    docs/deployment.md
