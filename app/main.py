@@ -33,3 +33,11 @@ def read_root():
 @app.get("/ui")
 def read_ui():
     return FileResponse("app/static/index.html")
+
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok",
+        "service": "Internship Application Intelligence Tracker"
+    }

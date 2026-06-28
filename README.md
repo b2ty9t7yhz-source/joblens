@@ -173,3 +173,43 @@ The project currently supports application tracking, job description analysis, i
 - Calendar reminders
 - AI-powered job description summarization
 - Deployment to a public URL
+
+## Docker
+
+Build the Docker image:
+
+    docker build -t internship-application-tracker .
+
+Run the app with Docker:
+
+    docker run -p 8000:8000 internship-application-tracker
+
+Or use Docker Compose:
+
+    docker compose up --build
+
+Then open:
+
+    http://127.0.0.1:8000/ui
+
+Health check:
+
+    http://127.0.0.1:8000/health
+
+## Makefile Commands
+
+Run locally:
+
+    make run
+
+Run tests:
+
+    make test
+
+Build Docker image:
+
+    make docker-build
+
+Run Docker container:
+
+    make docker-run
