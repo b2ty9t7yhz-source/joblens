@@ -64,3 +64,24 @@ class JobDescriptionAnalysisResponse(BaseModel):
     job_family: str
     location_type: str
     recommendation: str
+
+
+class ImportFromDescriptionRequest(BaseModel):
+    company: str
+    role: str
+    description: str
+    link: Optional[str] = None
+    type: Optional[str] = None
+    location: Optional[str] = None
+    source: Optional[str] = "Manual Import"
+    status: ApplicationStatus = "Saved"
+    deadline: Optional[date] = None
+    date_applied: Optional[date] = None
+    resume_version: Optional[str] = None
+    notes: Optional[str] = None
+    user_skills: list[str] = []
+
+
+class ImportedApplicationResponse(BaseModel):
+    application: ApplicationRead
+    analysis: JobDescriptionAnalysisResponse
