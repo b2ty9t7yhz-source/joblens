@@ -1,0 +1,50 @@
+from datetime import date, datetime
+from typing import Literal, Optional
+
+from pydantic import BaseModel, ConfigDict
+
+ApplicationStatus = Literal[
+    "Saved",
+    "Applied",
+    "OA",
+    "Interview",
+    "Rejected",
+    "Offer",
+    "No Response",
+]
+
+class ApplicationBase(BaseModel):
+    company: str
+    role: str
+    link: Optional[str] = None
+    type: Optional[str] = None
+    location: Optional[str] = None
+    source: Optional[str] = None
+    status: ApplicationStatus = "Saved"
+    deadline: Optional[date] = None
+    date_applied: Optional[date] = None
+    resume_version: Optional[str] = None
+    notes: Optional[str] = None
+
+class ApplicationCreate(ApplicationBase):
+    pass
+
+class ApplicationUpdate(BaseModel):
+    company: Optional[str] = None
+    role: Optional[str] = None
+    link: Optional[str] = None
+    type: Optional[str] = None
+    location: Optional[str] = None
+    source: Optional[str] = None
+    status: Optional[ApplicationStatus] = None
+    deadline: Optional[date] = None
+    date_applied: Optional[date] = None
+    resume_version: Optional[str] = None
+    notes: Optional[str] = None
+
+class ApplicationRead(ApplicationBase):
+    id: int
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)
