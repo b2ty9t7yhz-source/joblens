@@ -167,3 +167,18 @@ class DuplicateCheckResponse(BaseModel):
     existing_company: Optional[str] = None
     existing_role: Optional[str] = None
     existing_link: Optional[str] = None
+
+
+class JobPriorityScoreRequest(BaseModel):
+    description: str
+    user_skills: list[str] = []
+    deadline: Optional[date] = None
+    preferred_locations: list[str] = []
+
+
+class JobPriorityScoreResponse(BaseModel):
+    priority_score: int
+    priority_level: str
+    recommendation: str
+    reasons: list[str]
+    analysis: JobDescriptionAnalysisResponse
