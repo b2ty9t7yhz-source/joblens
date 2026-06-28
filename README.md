@@ -1,46 +1,63 @@
 # Internship Application Intelligence Tracker
 
-A backend system for tracking internship and new grad job applications, resume versions, deadlines, interview stages, follow-ups, and application statistics.
+A FastAPI-based backend and web app for tracking internship applications, analyzing job descriptions, recommending resume versions, and prioritizing roles.
 
-## Goal
+## Overview
 
-This project helps students manage the full internship application process while practicing professional backend engineering skills.
+Students applying to internships often lose track of:
 
-The project starts as a FastAPI CRUD API and gradually adds authentication, database migrations, testing, analytics, reminders, Docker, and deployment.
+- Which companies they saved or applied to
+- Which resume version they used
+- Which roles are high priority
+- Which skills are missing from a job description
+- Which applications need follow-up
 
-## Core Features
+This project solves that problem with an application tracker plus job intelligence features.
 
-### V1: Core Application Tracking
-- Add job applications
+## Features
+
+### Application Tracking
+
+- Add applications
 - View all applications
 - View one application
 - Update application status
 - Delete applications
-- Search by company
-- Filter by status
-- Track application deadline
-- Track resume version
-- Add notes
+- Track company, role, link, source, status, deadline, location, notes, and resume version
 
-### V2: Engineering Quality
-- Add pytest tests
-- Add Alembic database migrations
-- Add pagination and sorting
-- Improve error handling
-- Document API endpoints
+### Job Intelligence
 
-### V3: Multi-User System
-- Add user registration and login
-- Add JWT authentication
-- Ensure users can only access their own applications
-- Add user-specific application statistics
+- Analyze job descriptions
+- Detect skills such as Python, SQL, REST API, FastAPI, Docker, AWS, Git, and more
+- Identify job family such as Backend, Data, Web / Full Stack, AI / ML, QA, or IT
+- Detect role level such as Internship, Entry Level, or Senior
+- Calculate match score based on user skills
+- Identify matched and missing skills
 
-### V4: Intelligence and Automation
-- Add follow-up reminders
-- Add upcoming deadline endpoint
-- Add application analytics
-- Add resume-to-job keyword matching
-- Deploy with PostgreSQL and Docker
+### Import Workflow
+
+- Paste a job description
+- Analyze the role automatically
+- Generate notes
+- Save the role as an application
+
+### Resume Recommendation
+
+- Compare job descriptions against multiple resume versions
+- Recommend the best resume version for a role
+- Explain matched and missing skills
+
+### Priority Scoring
+
+- Score roles based on match score, role level, location type, deadline, and missing skills
+- Return priority level and action items
+
+### Dashboard
+
+- View total applications
+- View saved and applied counts
+- View interview count
+- View upcoming deadlines
 
 ## Tech Stack
 
@@ -50,42 +67,109 @@ The project starts as a FastAPI CRUD API and gradually adds authentication, data
 - SQLAlchemy
 - Pydantic
 - pytest
-- Alembic
-- JWT Authentication
-- Docker
-- PostgreSQL
+- HTML
+- CSS
+- JavaScript
+- GitHub Actions
 
-## Planned API Endpoints
+## Project Structure
 
-```text
-GET    /applications
-POST   /applications
-GET    /applications/{id}
-PUT    /applications/{id}
-DELETE /applications/{id}
+    internship-application-tracker/
+      app/
+        main.py
+        database.py
+        models.py
+        schemas.py
+        crud.py
+        routers/
+        services/
+        static/
+      tests/
+      docs/
+      requirements.txt
+      README.md
 
-GET    /applications?company=
-GET    /applications?status=
-GET    /applications?sort_by=deadline
+## How to Run Locally
 
-POST   /auth/register
-POST   /auth/login
-GET    /users/me
+Create and activate a virtual environment:
 
-GET    /stats/applications-by-status
-GET    /stats/applications-by-source
-GET    /applications/upcoming-deadlines
-```
+    python3 -m venv .venv
+    source .venv/bin/activate
 
-## Project Status
+Install dependencies:
 
-Planning and design phase.
+    pip install -r requirements.txt
 
-## Next Steps
+Start the app:
 
-- Set up FastAPI project structure
-- Design SQLAlchemy models
-- Create SQLite database
-- Implement V1 CRUD endpoints
-- Add pytest tests
-- Add Alembic migrations
+    python -m uvicorn app.main:app --reload
+
+Open the web UI:
+
+    http://127.0.0.1:8000/ui
+
+Open the API docs:
+
+    http://127.0.0.1:8000/docs
+
+## Running Tests
+
+    python -m pytest -q
+
+## Main API Endpoints
+
+### Applications
+
+    POST   /applications/
+    GET    /applications/
+    GET    /applications/{application_id}
+    PUT    /applications/{application_id}
+    DELETE /applications/{application_id}
+    POST   /applications/check-duplicate
+
+### Job Analysis
+
+    POST /jobs/analyze-description
+    POST /jobs/score-priority
+
+### Imports
+
+    POST /imports/from-description
+    POST /imports/greenhouse
+
+### Stats
+
+    GET /stats/summary
+    GET /stats/applications-by-status
+    GET /stats/applications-by-source
+    GET /stats/upcoming-deadlines
+
+### Resume Recommendation
+
+    POST /resumes/recommend
+
+### Reports
+
+    POST /reports/application-intelligence
+
+## Demo Flow
+
+See:
+
+    docs/demo_script.md
+
+## Current Status
+
+The project currently supports application tracking, job description analysis, import workflow, resume recommendation, priority scoring, dashboard statistics, and a basic web frontend.
+
+## Future Improvements
+
+- User authentication
+- PostgreSQL deployment database
+- Docker setup
+- Better frontend UI
+- Saved search profiles
+- Email reminders
+- Calendar reminders
+- AI-powered job description summarization
+- Deployment to a public URL
