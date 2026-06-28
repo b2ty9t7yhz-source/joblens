@@ -48,3 +48,19 @@ class ApplicationRead(ApplicationBase):
     updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class JobDescriptionAnalysisRequest(BaseModel):
+    description: str
+    user_skills: list[str] = []
+
+
+class JobDescriptionAnalysisResponse(BaseModel):
+    detected_skills: list[str]
+    matched_skills: list[str]
+    missing_skills: list[str]
+    match_score: int
+    role_level: str
+    job_family: str
+    location_type: str
+    recommendation: str
