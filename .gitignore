@@ -6,3 +6,9 @@ venv/
 *.db
 .pytest_cache/
 .DS_Store
+
+# Personal files
+resume*.md
+resume*.pdf
+docs/resume*.md
+docs/resume*.pdf
