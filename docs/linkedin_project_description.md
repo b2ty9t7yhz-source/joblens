@@ -10,4 +10,4 @@ Live Demo:
 https://internship-application-tracker-l6ha.onrender.com/ui
 
 GitHub:
-https://github.com/b2ty9t7yhz-source/internship-application-tracker
+https://github.com/b2ty9t7yhz-source/joblens
