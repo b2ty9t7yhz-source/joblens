@@ -1,6 +1,6 @@
 # LinkedIn Project Description
 
-Internship Application Intelligence Tracker is a FastAPI-based web application that helps students manage internship applications and make better application decisions.
+JobLens is a FastAPI-based web application that helps students manage internship applications and make better application decisions.
 
 The app supports application tracking, job description analysis, skill matching, resume version recommendation, priority scoring, duplicate detection, dashboard statistics, and intelligence report generation.
 

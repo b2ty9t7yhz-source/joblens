@@ -1,4 +1,4 @@
-# Internship Application Intelligence Tracker
+# JobLens
 
 ## Problem
 

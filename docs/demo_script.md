@@ -1,6 +1,6 @@
 # Demo Script
 
-This document explains how to demo the Internship Application Intelligence Tracker.
+This document explains how to demo the JobLens.
 
 ## 1. Start the app
 

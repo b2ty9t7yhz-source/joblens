@@ -8,7 +8,7 @@ from app.routers import applications, job_analysis, imports, stats, resumes, rep
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="Internship Application Intelligence Tracker",
+    title="JobLens",
     description="A backend API for tracking internship applications, deadlines, resume versions, follow-ups, and application statistics.",
     version="0.1.0",
 )
@@ -25,7 +25,7 @@ app.include_router(reports.router)
 @app.get("/")
 def read_root():
     return {
-        "message": "Internship Application Intelligence Tracker API",
+        "message": "JobLens API",
         "status": "V1 CRUD in progress"
     }
 
@@ -39,5 +39,5 @@ def read_ui():
 def health_check():
     return {
         "status": "ok",
-        "service": "Internship Application Intelligence Tracker"
+        "service": "JobLens"
     }

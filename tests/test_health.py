@@ -13,4 +13,4 @@ def test_health_check():
     data = response.json()
 
     assert data["status"] == "ok"
-    assert data["service"] == "Internship Application Intelligence Tracker"
+    assert data["service"] == "JobLens"

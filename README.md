@@ -1,4 +1,4 @@
-# Internship Application Intelligence Tracker
+# JobLens
 
 A FastAPI-based backend and web app for tracking internship applications, analyzing job descriptions, recommending resume versions, and prioritizing roles.
 

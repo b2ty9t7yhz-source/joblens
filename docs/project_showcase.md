@@ -1,4 +1,4 @@
-# Project Showcase: Internship Application Intelligence Tracker
+# Project Showcase: JobLens
 
 ## One-Sentence Summary
 
