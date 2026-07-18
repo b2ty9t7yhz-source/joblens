@@ -8,6 +8,10 @@ const analysisForm = document.querySelector("#analysisForm");
 const analysisResult = document.querySelector("#analysisResult");
 const reportForm = document.querySelector("#reportForm");
 const reportResult = document.querySelector("#reportResult");
+const loadDemoBtn = document.querySelector("#loadDemoBtn");
+const clearDemoBtn = document.querySelector("#clearDemoBtn");
+const demoBadge = document.querySelector("#demoBadge");
+const demoCount = document.querySelector("#demoCount");
 
 const totalApplications = document.querySelector("#totalApplications");
 const savedApplications = document.querySelector("#savedApplications");
@@ -109,6 +113,57 @@ async function loadApplications() {
     });
   } catch (error) {
     applicationsList.innerHTML = `<p>Error loading applications: ${escapeHtml(error.message)}</p>`;
+  }
+}
+
+async function loadDemoStatus() {
+  try {
+    const status = await apiFetch("/demo/status");
+    demoBadge.hidden = !status.active;
+    clearDemoBtn.hidden = !status.active;
+    demoCount.textContent = status.sample_records;
+    loadDemoBtn.textContent = status.active ? "Reload Sample Data" : "Load Sample Data";
+  } catch (error) {
+    console.error("Could not load demo status", error);
+  }
+}
+
+async function loadSampleData() {
+  loadDemoBtn.disabled = true;
+  loadDemoBtn.textContent = "Loading...";
+
+  try {
+    const result = await apiFetch("/demo/load-sample-data", { method: "POST" });
+    await refreshAll();
+    const message = result.inserted
+      ? `Loaded ${result.inserted} sample applications.`
+      : "Sample applications are already loaded.";
+    alert(message);
+  } catch (error) {
+    alert(`Could not load sample data: ${error.message}`);
+  } finally {
+    loadDemoBtn.disabled = false;
+    await loadDemoStatus();
+  }
+}
+
+async function clearSampleData() {
+  const confirmed = window.confirm(
+    "Remove the JobLens sample applications? Your own applications will not be changed."
+  );
+  if (!confirmed) return;
+
+  clearDemoBtn.disabled = true;
+
+  try {
+    const result = await apiFetch("/demo/sample-data", { method: "DELETE" });
+    await refreshAll();
+    alert(`Removed ${result.deleted} sample applications.`);
+  } catch (error) {
+    alert(`Could not clear sample data: ${error.message}`);
+  } finally {
+    clearDemoBtn.disabled = false;
+    await loadDemoStatus();
   }
 }
 
@@ -388,5 +443,7 @@ async function refreshAll() {
 }
 
 refreshBtn.addEventListener("click", refreshAll);
+loadDemoBtn.addEventListener("click", loadSampleData);
+clearDemoBtn.addEventListener("click", clearSampleData);
 
-refreshAll();
+Promise.all([refreshAll(), loadDemoStatus()]);

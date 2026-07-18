@@ -59,6 +59,13 @@ This project solves that problem with an application tracker plus job intelligen
 - View interview count
 - View upcoming deadlines
 
+### Demo Mode
+
+- Load six realistic sample applications from the web UI
+- Showcase multiple statuses and upcoming deadlines immediately
+- Reload safely without creating duplicates
+- Clear only JobLens sample records without changing personal applications
+
 ## Tech Stack
 
 - Python
@@ -151,6 +158,12 @@ Open the API docs:
 ### Reports
 
     POST /reports/application-intelligence
+
+### Demo
+
+    GET    /demo/status
+    POST   /demo/load-sample-data
+    DELETE /demo/sample-data
 
 ## Demo Flow
 

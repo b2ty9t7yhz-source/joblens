@@ -3,7 +3,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.database import Base, engine
-from app.routers import applications, job_analysis, imports, stats, resumes, reports
+from app.routers import applications, demo, job_analysis, imports, stats, resumes, reports
 
 Base.metadata.create_all(bind=engine)
 
@@ -21,6 +21,7 @@ app.include_router(imports.router)
 app.include_router(stats.router)
 app.include_router(resumes.router)
 app.include_router(reports.router)
+app.include_router(demo.router)
 
 @app.get("/")
 def read_root():

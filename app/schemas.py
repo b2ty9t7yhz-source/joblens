@@ -50,6 +50,22 @@ class ApplicationRead(ApplicationBase):
     model_config = ConfigDict(from_attributes=True)
 
 
+class DemoStatusResponse(BaseModel):
+    active: bool
+    sample_records: int
+
+
+class DemoLoadResponse(BaseModel):
+    inserted: int
+    skipped: int
+    total_sample_records: int
+    applications: list[ApplicationRead]
+
+
+class DemoClearResponse(BaseModel):
+    deleted: int
+
+
 class JobDescriptionAnalysisRequest(BaseModel):
     description: str
     user_skills: list[str] = []

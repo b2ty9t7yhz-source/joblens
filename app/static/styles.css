@@ -47,6 +47,40 @@ body {
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.demo-badge {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(167, 243, 208, 0.45);
+  color: #d1fae5;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+button.demo-button {
+  background: #f59e0b;
+  color: #172033;
+}
+
+button.demo-button:hover {
+  background: #fbbf24;
+}
+
+button.demo-clear-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+button.demo-clear-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
 }
 
 .topbar-actions a {
